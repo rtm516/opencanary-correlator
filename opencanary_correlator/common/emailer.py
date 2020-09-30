@@ -16,20 +16,20 @@ def send_email(from_='notifications@opencanary.org', to='', subject='', message=
     msg['From'] = from_
     msg['To'] = to
 
-    if (use_ssl):
-        s = smtplib.SMTP_SSL(server, port)
+
+    if (use_ssl and not starttls):
+        s = smtplib.SMTP_SSL(host=server, port=port)
     else:
         s = smtplib.SMTP(server, port)
-    
+
     if (starttls):
-        context = ssl.SSLContext(ssl.PROTOCOL_TLS)
         s.ehlo()
-        s.starttls(context=context)
+        s.starttls()
         s.ehlo()
-    
+
     if (not username == '' and not password == ''):
         s.login(username, password)
-    
+
     try:
         s.sendmail(from_, [to], msg.as_string())
         logger.info('Email sent to %s' % (to))

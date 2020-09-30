@@ -1,11 +1,11 @@
 
-from opencanary_correlator.common.redismanager import redis, KEY_LOGS, KEY_INCIDENTS, KEY_DEVICE, \
+from redismanager import redis, KEY_LOGS, KEY_INCIDENTS, KEY_DEVICE, \
     KEY_USER, KEY_USER_COUNT,\
     KEY_CONSOLE_SETTING_PREFIX, \
     KEY_WHITELIST_IPS
-from opencanary_correlator.common.utils import timestamp_age, timestamp_printable, timestamp_js
-from opencanary_correlator.common.logs import logger
-from opencanary_correlator.common.incidents import Incident
+from utils import timestamp_age, timestamp_printable, timestamp_js
+from logs import logger
+from incidents import Incident
 import nacl.hash
 import datetime
 import simplejson

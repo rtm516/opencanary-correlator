@@ -1,7 +1,7 @@
 import logging
 logger = logging.getLogger('opencanary-correlator')
 
-from opencanary_correlator.common.constants import *
+from common.constants import *
 
 from common.logs import RedisHandler
 
@@ -12,7 +12,7 @@ formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(messag
 redis_h.setFormatter(formatter)
 logger.addHandler(redis_h)
 
-from opencanary_correlator.handlers import *
+from handlers import *
 
 logmap = {
     LOG_BASE_BOOT: [],

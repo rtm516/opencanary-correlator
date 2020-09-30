@@ -1,12 +1,12 @@
 from twisted.internet.threads import deferToThread
-from opencanary_correlator.common.redismanager import *
-from opencanary_correlator.common.constants import LOG_PORT_SCAN_NET, LOG_PORT_SCAN_HOST
+from redismanager import *
+from constants import LOG_PORT_SCAN_NET, LOG_PORT_SCAN_HOST
 from utils import current_time_offset
 from notifications import notify
 from logs import logger
 import simplejson
 import datetime
-import opencanary_correlator.common.config as c
+import config as c
 
 class Incident(object):
     CONFIG_INCIDENT_HORIZON = ''

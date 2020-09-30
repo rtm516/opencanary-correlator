@@ -1,8 +1,8 @@
 import smtplib
 import mandrill
-import opencanary_correlator.common.config as c
+import config as c
 from email.mime.text import MIMEText
-from opencanary_correlator.common.logs import logger
+from logs import logger
 
 def send_email(from_='notifications@opencanary.org', to='', subject='', message='', server='', port=25, username='', password='', use_ssl=False):
     logger.debug('Emailing %s' % to)

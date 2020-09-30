@@ -1,7 +1,7 @@
-from opencanary_correlator.common.redismanager import redis, KEY_DEVICE, KEY_TRACK_HOST_PORT_SCAN, KEY_TRACK_NETWORK_PORT_SCAN
-from opencanary_correlator.common.utils import current_time_offset
-from opencanary_correlator.common.incidents import IncidentFactory
-from opencanary_correlator.common.logs import logger
+from common.redismanager import redis, KEY_DEVICE, KEY_TRACK_HOST_PORT_SCAN, KEY_TRACK_NETWORK_PORT_SCAN
+from common.utils import current_time_offset
+from common.incidents import IncidentFactory
+from common.logs import logger
 import opencanary_correlator.common.config as c
 
 def defaultHandler(incidentName):

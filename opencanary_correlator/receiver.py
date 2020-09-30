@@ -5,7 +5,7 @@ from twisted.protocols.basic import LineReceiver
 from twisted.python import usage
 from twisted.internet import protocol
 from twisted.internet import reactor
-from opencanary_correlator.dispatcher import process_device_report
+from dispatcher import process_device_report
 
 class CorrelatorOptions(usage.Options):
     optParameters = [['ip',   'i', '127.0.0.1', 'IP Address to listen on'],

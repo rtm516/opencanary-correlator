@@ -1,7 +1,7 @@
 from twilio.rest import TwilioRestClient
-from opencanary_correlator.common.logs import logger
-from opencanary_correlator.common.emailer import mandrill_send, send_email
-import opencanary_correlator.common.config as c
+from logs import logger
+from emailer import mandrill_send, send_email
+import config as c
 import requests
 
 class SMS:

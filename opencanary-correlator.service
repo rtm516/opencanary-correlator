@@ -1,0 +1,12 @@
+[Unit]
+Description=OpenCanary Correlator
+After=redis.service
+
+[Service]
+User=opencanary
+Restart=always
+WorkingDirectory=/srv/opencanary-correlator
+ExecStart=/usr/bin/python2.7 /srv/opencanary-correlator/opencanary_correlator/receiver.py --config=./opencanary_correlator.conf --ip=0.0.0.0
+
+[Install]
+WantedBy=multi-user.target

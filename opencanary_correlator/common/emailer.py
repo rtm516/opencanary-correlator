@@ -4,7 +4,7 @@ import opencanary_correlator.common.config as c
 from email.mime.text import MIMEText
 from opencanary_correlator.common.logs import logger
 
-def send_email(from_='notifications@opencanary.org', to='', subject='', message='', server='', port=25):
+def send_email(from_='notifications@opencanary.org', to='', subject='', message='', server='', port=25, username='', password='', use_ssl=False):
     logger.debug('Emailing %s' % to)
     if not server:
         return
@@ -15,7 +15,14 @@ def send_email(from_='notifications@opencanary.org', to='', subject='', message=
     msg['From'] = from_
     msg['To'] = to
 
-    s = smtplib.SMTP(server, port)
+    if (use_ssl):
+        s = smtplib.SMTP_SSL(server, port)
+    else:
+        s = smtplib.SMTP(server, port)
+    
+    if (not username == '' and not password == ''):
+        s.login(username, password)
+    
     try:
         s.sendmail(from_, [to], msg.as_string())
         logger.info('Email sent to %s' % (to))

@@ -30,15 +30,23 @@ def notify(incident):
                               subject=incident.format_title(),
                               message=incident.format_report())
         else:
-            server  = c.config.getVal('console.email_host', default='')
+            from_ = c.config.getVal('console.email_from', default='notifications@opencanary.org')
+            server = c.config.getVal('console.email_host', default='')
             port = int(c.config.getVal('console.email_port', default=25))
+            username = c.config.getVal('console.email_username', default='')
+            password = c.config.getVal('console.email_password', default='')
+            use_ssl = c.config.getVal('console.email_ssl', default='False') == 'True'
             if len(addresses) > 0 and server:
                 for address in addresses:
-                    send_email(to=address,
+                    send_email(from_=from_,
+                               to=address,
                                subject=incident.format_title(),
                                message=incident.format_report(),
                                server=server,
-                               port=port)
+                               port=port,
+                               username=username,
+                               password=password,
+                               use_ssl=use_ssl)
 
     if c.config.getVal('console.sms_notification_enable', default=False):
         logger.debug('SMS notifications enabled')

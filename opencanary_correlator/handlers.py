@@ -2,7 +2,7 @@ from common.redismanager import redis, KEY_DEVICE, KEY_TRACK_HOST_PORT_SCAN, KEY
 from common.utils import current_time_offset
 from common.incidents import IncidentFactory
 from common.logs import logger
-import opencanary_correlator.common.config as c
+import common.config as c
 
 def defaultHandler(incidentName):
     def handler(data=None):

@@ -36,6 +36,7 @@ def notify(incident):
             username = c.config.getVal('console.email_username', default='')
             password = c.config.getVal('console.email_password', default='')
             use_ssl = c.config.getVal('console.email_ssl', default='False') == 'True'
+            starttls = c.config.getVal('console.email_starttls', default='False') == 'True'
             if len(addresses) > 0 and server:
                 for address in addresses:
                     send_email(from_=from_,
@@ -46,7 +47,8 @@ def notify(incident):
                                port=port,
                                username=username,
                                password=password,
-                               use_ssl=use_ssl)
+                               use_ssl=use_ssl,
+                               starttls=starttls)
 
     if c.config.getVal('console.sms_notification_enable', default=False):
         logger.debug('SMS notifications enabled')

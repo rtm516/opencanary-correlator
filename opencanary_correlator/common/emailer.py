@@ -1,10 +1,11 @@
 import smtplib
 import mandrill
+import ssl
 import config as c
 from email.mime.text import MIMEText
 from logs import logger
 
-def send_email(from_='notifications@opencanary.org', to='', subject='', message='', server='', port=25, username='', password='', use_ssl=False):
+def send_email(from_='notifications@opencanary.org', to='', subject='', message='', server='', port=25, username='', password='', use_ssl=False, starttls=False):
     logger.debug('Emailing %s' % to)
     if not server:
         return
@@ -19,6 +20,12 @@ def send_email(from_='notifications@opencanary.org', to='', subject='', message=
         s = smtplib.SMTP_SSL(server, port)
     else:
         s = smtplib.SMTP(server, port)
+    
+    if (starttls):
+        context = ssl.SSLContext(ssl.PROTOCOL_TLS)
+        s.ehlo()
+        s.starttls(context=context)
+        s.ehlo()
     
     if (not username == '' and not password == ''):
         s.login(username, password)
